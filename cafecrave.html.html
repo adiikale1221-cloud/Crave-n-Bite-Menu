@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe Menu</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#0f0f0f;
+    color:#fff;
+}
+.container{
+    max-width:430px;
+    margin:auto;
+    padding:10px;
+    padding-top:90px;
+    padding-bottom:80px;
+}
+.header{
+    font-size:18px;
+    font-weight:bold;
+    padding:10px 0;
+}
+.category{
+    margin:15px 0 8px;
+    color:#aaa;
+}
+.item{
+    display:flex;
+    align-items:center;
+    background:#1a1a1a;
+    padding:8px;
+    border-radius:8px;
+    margin-bottom:8px;
+}
+.item img{
+    width:60px;
+    height:60px;
+    border-radius:6px;
+    object-fit:cover;
+    margin-right:10px;
+}
+.item-details{flex:1;}
+.item-name{font-size:14px;}
+.item-price{font-size:13px;color:#ccc;}
+
+.qty-box{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+.qty-box button{
+    width:28px;
+    height:28px;
+    border:none;
+    background:#333;
+    color:#fff;
+    font-size:18px;
+    border-radius:4px;
+}
+.qty{
+    min-width:18px;
+    text-align:center;
+}
+
+/* TOP CART */
+.top-cart{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    background:#111;
+    padding:10px;
+    text-align:center;
+    z-index:999;
+}
+.top-cart button{
+    background:#25D366;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:14px;
+    margin:3px;
+}
+
+/* BOTTOM CONFIRM BAR */
+#confirmBar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#25D366;
+    padding:12px;
+    display:none;
+    justify-content:flex-end;
+    z-index:1000;
+}
+#confirmBar button{
+    background:#000;
+    color:#fff;
+    border:none;
+    padding:10px 16px;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+/* CART POPUP */
+#cartPopup{
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.6);
+    z-index:2000;
+}
+#cartPopup .box{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#111;
+    border-radius:14px 14px 0 0;
+    padding:16px;
+    max-height:70%;
+    overflow-y:auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP CART -->
+<div class="top-cart">
+    <button onclick="openCartPopup()">
+        🛒 Cart (<span id="cartCount">0</span>) • ₹<span id="cartTotal">0</span>
+    </button>
+    <button onclick="openCartPopup()" style="background:#333;color:#fff;">
+        View Cart Items
+    </button>
+</div>
+
+<div class="container">
+<div class="header">Menu</div>
+
+<!-- HOT DRINKS -->
+<div class="category">Hot Drinks</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Tea</div>
+        <div class="item-price">₹10</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Tea',10,-1)">−</button>
+    <div class="qty" id="Tea-qty">0</div>
+    <button onclick="changeQty('Tea',10,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Hot Coffee</div>
+        <div class="item-price">₹15</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Hot Coffee',15,-1)">−</button>
+    <div class="qty" id="Hot Coffee-qty">0</div>
+    <button onclick="changeQty('Hot Coffee',15,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Black Coffee</div>
+        <div class="item-price">₹15</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Black Coffee',15,-1)">−</button>
+    <div class="qty" id="Black Coffee-qty">0</div>
+    <button onclick="changeQty('Black Coffee',15,1)">+</button>
+</div>
+
+</div>
+
+
+<!-- COLD COFFEE -->
+<div class="category">Cold Coffee</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Thick Cold Coffee</div>
+        <div class="item-price">₹29</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Thick Cold Coffee',29,-1)">−</button>
+    <div class="qty" id="Thick Cold Coffee-qty">0</div>
+    <button onclick="changeQty('Thick Cold Coffee',29,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Cafe Frappe</div>
+        <div class="item-price">₹59</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Cafe Frappe',59,-1)">−</button>
+    <div class="qty" id="Cafe Frappe-qty">0</div>
+    <button onclick="changeQty('Cafe Frappe',59,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Hazelnut Cold Coffee</div>
+        <div class="item-price">₹59</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Hazelnut Cold Coffee',59,-1)">−</button>
+    <div class="qty" id="Hazelnut Cold Coffee-qty">0</div>
+    <button onclick="changeQty('Hazelnut Cold Coffee',59,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1510627498534-cf7e9002facc?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Caramel Cold Coffee</div>
+        <div class="item-price">₹69</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Caramel Cold Coffee',69,-1)">−</button>
+    <div class="qty" id="Caramel Cold Coffee-qty">0</div>
+    <button onclick="changeQty('Caramel Cold Coffee',69,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1598908314704-8d8a8a64f1a9?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Moka Frappe Cold</div>
+        <div class="item-price">₹69</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Moka Frappe Cold',69,-1)">−</button>
+    <div class="qty" id="Moka Frappe Cold-qty">0</div>
+    <button onclick="changeQty('Moka Frappe Cold',69,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Butterscotch Cold Coffee</div>
+        <div class="item-price">₹69</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Butterscotch Cold Coffee',69,-1)">−</button>
+    <div class="qty" id="Butterscotch Cold Coffee-qty">0</div>
+    <button onclick="changeQty('Butterscotch Cold Coffee',69,1)">+</button>
+</div>
+
+
+</div>
+
+<!-- SANDWICH -->
+<div class="category">Sandwich</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1553909489-cd47e0907980">
+    <div class="item-details">
+        <div class="item-name">Chocolate Sandwich</div>
+        <div class="item-price">₹49</div>
+    </div>
+ <div class="qty-box">
+    <button onclick="changeQty('Chocolate Sandwich',49,-1)">−</button>
+    <div class="qty" id="Chocolate Sandwich-qty">0</div>
+    <button onclick="changeQty('Chocolate Sandwich',49,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af">
+    <div class="item-details">
+        <div class="item-name">Veg Sandwich</div>
+        <div class="item-price">₹49</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Veg Sandwich',49,-1)">−</button>
+    <div class="qty" id="Veg Sandwich-qty">0</div>
+    <button onclick="changeQty('Veg Sandwich',49,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086">
+    <div class="item-details">
+        <div class="item-name">Cheese Grill Sandwich</div>
+        <div class="item-price">₹59</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Cheese Grill Sandwich',59,-1)">−</button>
+    <div class="qty" id="Cheese Grill Sandwich-qty">0</div>
+    <button onclick="changeQty('Cheese Grill Sandwich',59,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5">
+    <div class="item-details">
+        <div class="item-name">Club Sandwich</div>
+        <div class="item-price">₹99</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Club Sandwich',99,-1)">−</button>
+    <div class="qty" id="Club Sandwich-qty">0</div>
+    <button onclick="changeQty('Club Sandwich',99,1)">+</button>
+</div>
+
+
+</div>
+
+<!-- BURGER -->
+<div class="category">Burger</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+    <div class="item-details">
+        <div class="item-name">Veg Burger</div>
+        <div class="item-price">₹39</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Veg Burger',39,-1)">−</button>
+    <div class="qty" id="Veg Burger-qty">0</div>
+    <button onclick="changeQty('Veg Burger',39,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90">
+    <div class="item-details">
+        <div class="item-name">Veg Cheese Burger</div>
+        <div class="item-price">₹49</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Veg Cheese Burger',49,-1)">−</button>
+    <div class="qty" id="Veg Cheese Burger-qty">0</div>
+    <button onclick="changeQty('Veg Cheese Burger',49,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1603064752734-4c48eff53d05">
+    <div class="item-details">
+        <div class="item-name">Paneer Burger</div>
+        <div class="item-price">₹79</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Paneer Burger',79,-1)">−</button>
+    <div class="qty" id="Paneer Burger-qty">0</div>
+    <button onclick="changeQty('Paneer Burger',79,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5">
+    <div class="item-details">
+        <div class="item-name">Signature Burger</div>
+        <div class="item-price">₹89</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Signature Burger',89,-1)">−</button>
+    <div class="qty" id="Signature Burger-qty">0</div>
+    <button onclick="changeQty('Signature Burger',89,1)">+</button>
+</div>
+
+</div>
+
+<!-- PIZZA -->
+<div class="category">Pizza</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1548365328-8bdb9b4f1a3a">
+    <div class="item-details">
+        <div class="item-name">Cheese Pizza</div>
+        <div class="item-price">₹39</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Cheese Pizza',39,-1)">−</button>
+    <div class="qty" id="Cheese Pizza-qty">0</div>
+    <button onclick="changeQty('Cheese Pizza',39,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1601924582975-7d3c4f6a3f7b">
+    <div class="item-details">
+        <div class="item-name">Veg Pizza</div>
+        <div class="item-price">₹49</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Veg Pizza',49,-1)">−</button>
+    <div class="qty" id="Veg Pizza-qty">0</div>
+    <button onclick="changeQty('Veg Pizza',49,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
+    <div class="item-details">
+        <div class="item-name">Corn Pizza</div>
+        <div class="item-price">₹59</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Corn Pizza',59,-1)">−</button>
+    <div class="qty" id="Corn Pizza-qty">0</div>
+    <button onclick="changeQty('Corn Pizza',59,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e">
+    <div class="item-details">
+        <div class="item-name">Paneer Pizza</div>
+        <div class="item-price">₹69</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Paneer Pizza',69,-1)">−</button>
+    <div class="qty" id="Paneer Pizza-qty">0</div>
+    <button onclick="changeQty('Paneer Pizza',69,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1601924582975-7d3c4f6a3f7b">
+    <div class="item-details">
+        <div class="item-name">Signature 4 in 1 Pizza</div>
+        <div class="item-price">₹89</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Signature 4 in 1 Pizza',89,-1)">−</button>
+    <div class="qty" id="Signature 4 in 1 Pizza-qty">0</div>
+    <button onclick="changeQty('Signature 4 in 1 Pizza',89,1)">+</button>
+</div>
+
+</div>
+
+<!-- FRIES -->
+<div class="category">Fries</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Plain Fries</div>
+        <div class="item-price">₹39</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Plain Fries',39,-1)">−</button>
+    <div class="qty" id="Plain Fries-qty">0</div>
+    <button onclick="changeQty('Plain Fries',39,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Peri Peri Fries</div>
+        <div class="item-price">₹49</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Peri Peri Fries',49,-1)">−</button>
+    <div class="qty" id="Peri Peri Fries-qty">0</div>
+    <button onclick="changeQty('Peri Peri Fries',49,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1598679253544-2c9799244ea2?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Cheese Fries</div>
+        <div class="item-price">₹49</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('chesse Fries',49,-1)">−</button>
+    <div class="qty" id="chesse Fries-qty">0</div>
+    <button onclick="changeQty('chesse Fries',49,1)">+</button>
+</div>
+
+
+</div>
+
+
+<!-- MOMOS -->
+<div class="category">Momos</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1604908176997-431f2b2f3b7f">
+    <div class="item-details">
+        <div class="item-name">Veg Steam Momos</div>
+        <div class="item-price">₹49</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Veg Steam Momos',49,-1)">−</button>
+    <div class="qty" id="Veg Steam Momos-qty">0</div>
+    <button onclick="changeQty('Veg Steam Momos',49,1)">+</button>
+</div>
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1626776876729-bab4368f6c36">
+    <div class="item-details">
+        <div class="item-name">Veg Fried Momos</div>
+        <div class="item-price">₹59</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Veg Fried Momos',59,-1)">−</button>
+    <div class="qty" id="Veg Fried Momos-qty">0</div>
+    <button onclick="changeQty('Veg Fried Momos',59,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1604908176997-431f2b2f3b7f">
+    <div class="item-details">
+        <div class="item-name">Paneer Momos</div>
+        <div class="item-price">₹59</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Paneer Momos',59,-1)">−</button>
+    <div class="qty" id="Paneer Momos-qty">0</div>
+    <button onclick="changeQty('Paneer Momos',59,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1626776876729-bab4368f6c36">
+    <div class="item-details">
+        <div class="item-name">Chicken Steam Momos</div>
+        <div class="item-price">₹69</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Chicken Steam Momos',69,-1)">−</button>
+    <div class="qty" id="Chicken Steam Momos-qty">0</div>
+    <button onclick="changeQty('Chicken Steam Momos',69,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0">
+    <div class="item-details">
+        <div class="item-name">Chicken Fried Momos</div>
+        <div class="item-price">₹79</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Chicken Fried Momos',79,-1)">−</button>
+    <div class="qty" id="Chicken Fried Momos-qty">0</div>
+    <button onclick="changeQty('Chicken Fried Momos',79,1)">+</button>
+</div>
+
+
+</div>
+
+
+<!-- PASTA -->
+<div class="category">Pasta</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1521389508051-d7ffb5dc8c08">
+    <div class="item-details">
+        <div class="item-name">White Sauce Pasta</div>
+        <div class="item-price">₹99</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('White Sauce Pasta',99,-1)">−</button>
+    <div class="qty" id="White Sauce Pasta-qty">0</div>
+    <button onclick="changeQty('White Sauce Pasta',99,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e">
+    <div class="item-details">
+        <div class="item-name">Red Sauce Pasta</div>
+        <div class="item-price">₹99</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Red Sauce Pasta',99,-1)">−</button>
+    <div class="qty" id="Red Sauce Pasta-qty">0</div>
+    <button onclick="changeQty('Red Sauce Pasta',99,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df">
+    <div class="item-details">
+        <div class="item-name">Pink Sauce Pasta</div>
+        <div class="item-price">₹99</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Pink Sauce Pasta',99,-1)">−</button>
+    <div class="qty" id="Pink Sauce Pasta-qty">0</div>
+    <button onclick="changeQty('Pink Sauce Pasta',99,1)">+</button>
+</div>
+
+</div>
+
+<!-- MAGGIE -->
+<div class="category">Maggie</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1604908554161-0c3c9f6f5d8b?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Plain Maggie</div>
+        <div class="item-price">₹39</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Plain Maggie',39,-1)">−</button>
+    <div class="qty" id="Plain Maggie-qty">0</div>
+    <button onclick="changeQty('Plain Maggie',39,1)">+</button>
+</div>
+
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1617191518301-7a5c2c8d9c1b?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Vegetable Maggie</div>
+        <div class="item-price">₹50</div>
+    </div>
+   <div class="qty-box">
+    <button onclick="changeQty('Vegetable Maggie',50,-1)">−</button>
+    <div class="qty" id="Vegetable Maggie-qty">0</div>
+    <button onclick="changeQty('Vegetable Maggie',50,1)">+</button>
+</div>
+
+</div>
+
+<div class="item">
+    <img src="https://images.unsplash.com/photo-1626078299002-4c8c77e7b0a2?auto=format&fit=crop&w=600&q=80">
+    <div class="item-details">
+        <div class="item-name">Cheese Maggie</div>
+        <div class="item-price">₹60</div>
+    </div>
+    <div class="qty-box">
+    <button onclick="changeQty('Cheese Maggie',60,-1)">−</button>
+    <div class="qty" id="Cheese Maggie-qty">0</div>
+    <button onclick="changeQty('Cheese Maggie',60,1)">+</button>
+</div>
+
+
+</div>
+
+
+</div>
+
+<!-- CONFIRM BAR -->
+<div id="confirmBar">
+    <button onclick="confirmOrder()">Confirm Order</button>
+</div>
+
+<!-- CART POPUP -->
+<div id="cartPopup">
+    <div class="box">
+        <h3>🛒 Your Cart</h3>
+        <div id="cartListItems"></div>
+        <div style="margin:10px 0;font-weight:bold;">
+            Total: ₹<span id="cartListTotal">0</span>
+        </div>
+        <button onclick="closeCartPopup()" style="
+            width:100%;
+            padding:12px;
+            background:#25D366;
+            border:none;
+            border-radius:8px;
+            font-weight:bold;">
+            Close
+        </button>
+    </div>
+</div>
+
+<script>
+let cart = {};
+
+function changeQty(name, price, change){
+    if(!cart[name]) cart[name] = {price, qty:0};
+    cart[name].qty += change;
+
+    if(cart[name].qty <= 0){
+        delete cart[name];
+        document.getElementById(name+"-qty").innerText = 0;
+    }else{
+        document.getElementById(name+"-qty").innerText = cart[name].qty;
+    }
+    updateCartUI();
+}
+
+function updateCartUI(){
+    let totalItems = 0;
+    let totalAmount = 0;
+
+    for(let item in cart){
+        totalItems += cart[item].qty;
+        totalAmount += cart[item].qty * cart[item].price;
+    }
+
+    document.getElementById("cartCount").innerText = totalItems;
+    document.getElementById("cartTotal").innerText = totalAmount;
+
+    document.getElementById("confirmBar").style.display =
+        totalItems > 0 ? "flex" : "none";
+}
+
+function openCartPopup(){
+    let html = "";
+    let total = 0;
+
+    if(Object.keys(cart).length === 0){
+        html = "Your cart is empty.";
+    }else{
+        for(let item in cart){
+            let q = cart[item].qty;
+            let p = cart[item].price;
+            let t = q * p;
+            html += `<div>${item} × ${q} = ₹${t}</div>`;
+            total += t;
+        }
+    }
+
+    document.getElementById("cartListItems").innerHTML = html;
+    document.getElementById("cartListTotal").innerText = total;
+    document.getElementById("cartPopup").style.display = "block";
+}
+
+function closeCartPopup(){
+    document.getElementById("cartPopup").style.display = "none";
+}
+
+function confirmOrder(){
+
+    let lastOrder = localStorage.getItem("CRAVE_ORDER_NO");
+    if(lastOrder === null) lastOrder = 0;
+
+    let orderNo = parseInt(lastOrder) + 1;
+    localStorage.setItem("CRAVE_ORDER_NO", orderNo);
+
+    let msg = ` *Crave N Bite*%0A *Order No: ${orderNo}*%0A%0A`;
+    let total = 0, i = 1;
+
+    for(let item in cart){
+        let q = cart[item].qty;
+        let p = cart[item].price;
+        let t = q * p;
+
+        msg += `${i}. ${item} × ${q} = ₹${t}%0A`;
+        total += t;
+        i++;
+    }
+
+    msg += `%0A *Total: ₹${total}*`;
+
+    // Clear cart
+    cart = {};
+    document.querySelectorAll(".qty").forEach(el => el.innerText = 0);
+    updateCartUI();
+
+    // WhatsApp redirect
+    window.location.href =
+        `https://wa.me/917875041022?text=${msg}`;
+}
+</script>
+
+</body>
+</html>
