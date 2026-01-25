@@ -103,8 +103,8 @@ body{
     background:#8d7676;
     color:#fff;
     border:none;
-    padding:16px 22px;
-    border-radius:10px;
+    padding:10px 16px;
+    border-radius:6px;
     font-weight:bold;
 }
 
@@ -149,7 +149,7 @@ body{
 <div class="category">Hot Drinks</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80">
+    <img src="tea.jpg">
     <div class="item-details">
         <div class="item-name">Tea</div>
         <div class="item-price">₹10</div>
@@ -163,7 +163,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80">
+    <img src="hot coffee.webp">
     <div class="item-details">
         <div class="item-name">Hot Coffee</div>
         <div class="item-price">₹15</div>
@@ -177,7 +177,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80">
+    <img src="BLACK TEA.jpg">
     <div class="item-details">
         <div class="item-name">Black Coffee</div>
         <div class="item-price">₹15</div>
@@ -195,7 +195,20 @@ body{
 <div class="category">Cold Coffee</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80">
+    <img src="plain cold coffee.webp">
+    <div class="item-details">
+        <div class="item-name">Plain Cold Coffee</div>
+        <div class="item-price">₹25</div>
+    </div>
+    <div class="qty-box">
+        <button onclick="changeQty('Plain Cold Coffee',25,-1)">−</button>
+        <div class="qty" id="Plain Cold Coffee-qty">0</div>
+        <button onclick="changeQty('Plain Cold Coffee',25,1)">+</button>
+    </div>
+</div>
+
+<div class="item">
+    <img src="thick cold coffee.jpg">
     <div class="item-details">
         <div class="item-name">Thick Cold Coffee</div>
         <div class="item-price">₹29</div>
@@ -210,7 +223,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80">
+    <img src="cafe frappe cold coffe.webp">
     <div class="item-details">
         <div class="item-name">Cafe Frappe</div>
         <div class="item-price">₹59</div>
@@ -225,7 +238,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80">
+    <img src="hazelnut coffee.jpg">
     <div class="item-details">
         <div class="item-name">Hazelnut Cold Coffee</div>
         <div class="item-price">₹59</div>
@@ -240,7 +253,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1510627498534-cf7e9002facc?auto=format&fit=crop&w=600&q=80">
+    <img src="caramalcoffee..jpg">
     <div class="item-details">
         <div class="item-name">Caramel Cold Coffee</div>
         <div class="item-price">₹69</div>
@@ -255,7 +268,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1598908314704-8d8a8a64f1a9?auto=format&fit=crop&w=600&q=80">
+    <img src="moka frappe.webp">
     <div class="item-details">
         <div class="item-name">Moka Frappe Cold</div>
         <div class="item-price">₹69</div>
@@ -270,7 +283,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80">
+    <img src="butterscotch.jpg">
     <div class="item-details">
         <div class="item-name">Butterscotch Cold Coffee</div>
         <div class="item-price">₹69</div>
@@ -288,7 +301,7 @@ body{
 <div class="category">Sandwich</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1553909489-cd47e0907980">
+    <img src="chocolate sandwich.jpeg">
     <div class="item-details">
         <div class="item-name">Chocolate Sandwich</div>
         <div class="item-price">₹49</div>
@@ -303,7 +316,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af">
+    <img src="veg sandwich.jpeg">
     <div class="item-details">
         <div class="item-name">Veg Sandwich</div>
         <div class="item-price">₹49</div>
@@ -318,9 +331,9 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086">
+    <img src="veg chesse sandwich.jpeg">
     <div class="item-details">
-        <div class="item-name">Cheese Grill Sandwich</div>
+        <div class="item-name">Veg Cheese Grill Sandwich</div>
         <div class="item-price">₹59</div>
     </div>
     <div class="qty-box">
@@ -333,7 +346,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5">
+    <img src="club sandwich.jpeg">
     <div class="item-details">
         <div class="item-name">Club Sandwich</div>
         <div class="item-price">₹99</div>
@@ -366,7 +379,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90">
+    <img src="veg chesse burger.jpeg">
     <div class="item-details">
         <div class="item-name">Veg Cheese Burger</div>
         <div class="item-price">₹49</div>
@@ -380,7 +393,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1603064752734-4c48eff53d05">
+    <img src="panner buger.jpeg">
     <div class="item-details">
         <div class="item-name">Paneer Burger</div>
         <div class="item-price">₹79</div>
@@ -394,7 +407,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5">
+    <img src="signature burger.webp">
     <div class="item-details">
         <div class="item-name">Signature Burger</div>
         <div class="item-price">₹89</div>
@@ -411,7 +424,7 @@ body{
 <div class="category">Pizza</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1548365328-8bdb9b4f1a3a">
+    <img src="chesse pizza.jpg">
     <div class="item-details">
         <div class="item-name">Cheese Pizza</div>
         <div class="item-price">₹39</div>
@@ -425,7 +438,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1601924582975-7d3c4f6a3f7b">
+    <img src="veg pizza.webp">
     <div class="item-details">
         <div class="item-name">Veg Pizza</div>
         <div class="item-price">₹49</div>
@@ -439,7 +452,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
+    <img src="corn pizza.webp">
     <div class="item-details">
         <div class="item-name">Corn Pizza</div>
         <div class="item-price">₹59</div>
@@ -453,7 +466,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e">
+    <img src="panner pizza.webp">
     <div class="item-details">
         <div class="item-name">Paneer Pizza</div>
         <div class="item-price">₹69</div>
@@ -467,7 +480,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1601924582975-7d3c4f6a3f7b">
+    <img src="four in one.jpeg">
     <div class="item-details">
         <div class="item-name">Signature 4 in 1 Pizza</div>
         <div class="item-price">₹89</div>
@@ -484,7 +497,7 @@ body{
 <div class="category">Fries</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80">
+    <img src="plain fries.avif">
     <div class="item-details">
         <div class="item-name">Plain Fries</div>
         <div class="item-price">₹39</div>
@@ -499,7 +512,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80">
+    <img src="peri peri.avif">
     <div class="item-details">
         <div class="item-name">Peri Peri Fries</div>
         <div class="item-price">₹49</div>
@@ -514,7 +527,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1598679253544-2c9799244ea2?auto=format&fit=crop&w=600&q=80">
+    <img src="chesse fries.avif">
     <div class="item-details">
         <div class="item-name">Cheese Fries</div>
         <div class="item-price">₹49</div>
@@ -533,7 +546,7 @@ body{
 <div class="category">Momos</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1604908176997-431f2b2f3b7f">
+    <img src="veg steam momos.jpg">
     <div class="item-details">
         <div class="item-name">Veg Steam Momos</div>
         <div class="item-price">₹49</div>
@@ -546,7 +559,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1626776876729-bab4368f6c36">
+    <img src="veg fried momos.webp">
     <div class="item-details">
         <div class="item-name">Veg Fried Momos</div>
         <div class="item-price">₹59</div>
@@ -560,10 +573,10 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1604908176997-431f2b2f3b7f">
+    <img src="panner fried momos.jpg">
     <div class="item-details">
-        <div class="item-name">Paneer Momos</div>
-        <div class="item-price">₹59</div>
+        <div class="item-name">Paneer Fried Momos</div>
+        <div class="item-price">₹69</div>
     </div>
     <div class="qty-box">
     <button onclick="changeQty('Paneer Momos',59,-1)">−</button>
@@ -575,7 +588,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1626776876729-bab4368f6c36">
+    <img src="chickan steam momos.webp">
     <div class="item-details">
         <div class="item-name">Chicken Steam Momos</div>
         <div class="item-price">₹69</div>
@@ -590,7 +603,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0">
+    <img src="chickan fried momos.webp">
     <div class="item-details">
         <div class="item-name">Chicken Fried Momos</div>
         <div class="item-price">₹79</div>
@@ -609,7 +622,7 @@ body{
 <div class="category">Pasta</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1521389508051-d7ffb5dc8c08">
+    <img src="white sauce pasta.jpg">
     <div class="item-details">
         <div class="item-name">White Sauce Pasta</div>
         <div class="item-price">₹99</div>
@@ -624,7 +637,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e">
+    <img src="red sauce pasta.jpeg">
     <div class="item-details">
         <div class="item-name">Red Sauce Pasta</div>
         <div class="item-price">₹99</div>
@@ -639,7 +652,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df">
+    <img src="pink sauce pasta.jpeg">
     <div class="item-details">
         <div class="item-name">Pink Sauce Pasta</div>
         <div class="item-price">₹99</div>
@@ -656,7 +669,7 @@ body{
 <div class="category">Maggie</div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1604908554161-0c3c9f6f5d8b?auto=format&fit=crop&w=600&q=80">
+    <img src="plain maggie.webp">
     <div class="item-details">
         <div class="item-name">Plain Maggie</div>
         <div class="item-price">₹39</div>
@@ -671,7 +684,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1617191518301-7a5c2c8d9c1b?auto=format&fit=crop&w=600&q=80">
+    <img src="vegitable maggie.jpg">
     <div class="item-details">
         <div class="item-name">Vegetable Maggie</div>
         <div class="item-price">₹50</div>
@@ -685,7 +698,7 @@ body{
 </div>
 
 <div class="item">
-    <img src="https://images.unsplash.com/photo-1626078299002-4c8c77e7b0a2?auto=format&fit=crop&w=600&q=80">
+    <img src="chesse maggie.avif">
     <div class="item-details">
         <div class="item-name">Cheese Maggie</div>
         <div class="item-price">₹60</div>
@@ -704,7 +717,7 @@ body{
 
 <!-- CONFIRM BAR -->
 <div id="confirmBar">
-    <button onclick="confirmOrder()">✅ Place Order</button>
+    <button onclick="confirmOrder()">Confirm Order</button>
 </div>
 
 <!-- CART POPUP -->
@@ -820,6 +833,3 @@ function confirmOrder(){
 
 </body>
 </html>
-
-
-
